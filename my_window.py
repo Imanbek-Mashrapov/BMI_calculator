@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QMainWindow, QLabel, QLineEdit, QPushButton, QRadioB
 import os
 from PyQt6 import uic
 
+
 class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -10,7 +11,6 @@ class MyWindow(QMainWindow):
         self.initUI()
 
     def initUI(self):
-        """Find all widgets after loading the UI."""
         self.title_label: QLabel = self.findChild(QLabel, "title_label")
         self.standard_radio_button: QRadioButton = self.findChild(QRadioButton, "standard_radio_button")
         self.metric_radio_button: QRadioButton = self.findChild(QRadioButton, "metric_radio_button")
@@ -86,7 +86,7 @@ class MyWindow(QMainWindow):
                 height_meters = height / 100
                 bmi = weight / (height_meters ** 2)
             elif self.standard_radio_button.isChecked():
-                bmi = (weight * 703) / (height ** 2)
+                bmi = (weight * 703) / ((height * 12) ** 2)
             else:
                 self.bmi_result_label.setText("Please select a unit system.")
                 return
