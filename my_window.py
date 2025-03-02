@@ -1,11 +1,11 @@
-from PyQt6.QtWidgets import QMainWindow, QLabel, QLineEdit, QPushButton, QRadioButton
+from PyQt6.QtWidgets import QMainWindow, QLabel, QLineEdit, QPushButton, QRadioButton, QMessageBox
 import os
 from PyQt6 import uic
 
 class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        ui_path = os.path.join(os.path.dirname(__file__), "bmi_style.ui")
+        ui_path = os.path.join(os.path.dirname(__file__), "bmi_design.ui")
         uic.loadUi(ui_path, self)
         self.initUI()
 
@@ -25,10 +25,6 @@ class MyWindow(QMainWindow):
         self.normal_label: QLabel = self.findChild(QLabel, "normal_label")
         self.overweight_label: QLabel = self.findChild(QLabel, "overweight_label")
         self.obese_label: QLabel = self.findChild(QLabel, "obese_label")
-
-        print("Height Label:", self.height_label)
-        print("Weight Label:", self.weight_label)
-        print("Title Label: ", self.title_label)
 
         if self.metric_radio_button:
             self.metric_radio_button.setChecked(True)
@@ -63,6 +59,19 @@ class MyWindow(QMainWindow):
                 self.height_label.setText("Height (ft):")
             if self.weight_label:
                 self.weight_label.setText("Weight (lbs):")
+
+    def show_help(self):
+        help_message = """
+        BMI Calculator Help:
+        Body mass index (BMI) is a medical screening tool that measures the ratio of your height 
+        to your weight to estimate the amount of body fat you have
+
+        1. Select your unit system (Metric or Standard)
+        2. Enter your height and weight
+        3. Click 'Calculate' to get your BMI
+        4. The result will show your BMI
+        """
+        QMessageBox.information(self, "Help", help_message)
 
     def on_click(self):
         try:
@@ -106,5 +115,12 @@ class MyWindow(QMainWindow):
     font-weight: bold;
     padding: 10px;
     border-radius: 5px;''')
+
+    def clear_inputs(self):
+        self.height_input.clear()
+        self.weight_input.clear()
+        self.bmi_result_label.clear()
+        self.bmi_result_label.setStyleSheet('')
+
 
 

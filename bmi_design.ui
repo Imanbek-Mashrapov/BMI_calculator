@@ -356,24 +356,24 @@ qproperty-alignment: AlignCenter;</string>
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionExit"/>
-    <addaction name="actionClear"/>
+    <addaction name="action_exit"/>
+    <addaction name="action_clear"/>
    </widget>
-   <widget class="QMenu" name="menuHelp">
+   <widget class="QMenu" name="action_help">
     <property name="title">
      <string>Help</string>
     </property>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuHelp"/>
+   <addaction name="action_help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionExit">
+  <action name="action_exit">
    <property name="text">
     <string>Exit</string>
    </property>
   </action>
-  <action name="actionClear">
+  <action name="action_clear">
    <property name="text">
     <string>Clear</string>
    </property>
